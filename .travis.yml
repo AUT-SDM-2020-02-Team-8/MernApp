@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - 14
+services:
+  - docker
+script:
+  - docker-compose run client npm test && docker-compose run server npm test
