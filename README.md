@@ -14,11 +14,16 @@ The client server is spun up at `localhost:3000` and it proxies internally to th
 
 The local directories are mounted into the containers, so changes will reflect immediately. However, changes to package.json will likely need to a rebuild: `docker-compose down && docker-compose build && docker-compose up`.
 
-## Production
+## Testing
 
 ```
-docker-compose -f docker-compose.prod.yml up
+docker-compose run client npm test
+docker-compose run server npm test
 ```
+
+## Production
+
+The app is deployed to Heroku at http://sdmteam8.herokuapp.com/
 
 ### Notes
 

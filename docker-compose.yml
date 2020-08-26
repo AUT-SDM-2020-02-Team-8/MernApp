@@ -13,6 +13,8 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - mongo
   client:
     build:
       context: ./client/
@@ -24,3 +26,15 @@ services:
       - server
     ports:
       - "3000:3000"
+  mongo:
+    container_name: mongo
+    image: mongo
+    expose:
+      - "27017"
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodata:
