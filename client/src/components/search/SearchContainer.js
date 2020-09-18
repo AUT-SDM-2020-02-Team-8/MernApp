@@ -53,26 +53,24 @@ class SearchContainer extends Component {
               <InputLabel>Search query</InputLabel>
               <TextField fullWidth value={this.state.query} onChange={this.handleQueryChange}></TextField>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3}>
               <InputLabel>From Year</InputLabel>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Select fullWidth label='From Year' value={this.state.fromYear} onChange={this.handleFromYearChange}>
                 <MenuItem value={''}>&nbsp;</MenuItem>
                 {[...Array(10).keys()].map(i => { return <MenuItem key={i} value={2020-i}>{2020-i}</MenuItem> })}
               </Select>
             </Grid>
-            <Grid item xs={3}></Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3}>
               <InputLabel>To Year</InputLabel>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Select fullWidth label='To Year' value={this.state.toYear} onChange={this.handleToYearChange}>
                 <MenuItem value={''}>&nbsp;</MenuItem>
                 {[...Array(10).keys()].map(i => { return <MenuItem key={i} value={2020-i}>{2020-i}</MenuItem> })}
               </Select>
             </Grid>
-            <Grid item xs={3}></Grid>
             <SearchCriteria />
             <Grid item xs={3}>
               <Button variant="contained" color="primary" type="submit">Search</Button>
