@@ -8,6 +8,7 @@ script:
 deploy:
   provider: heroku
   strategy: git
+  app: sdmteam8
   on:
     branch: staging
   api_key:
