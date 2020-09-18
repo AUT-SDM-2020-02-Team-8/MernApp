@@ -1,7 +1,12 @@
 language: node_js
 node_js:
-  - 14
+- 14
 services:
-  - docker
+- docker
 script:
-  - docker-compose run client npm test && docker-compose run server npm test
+- docker-compose run client npm test && docker-compose run server npm test
+deploy:
+  provider: heroku
+  strategy: git
+  api_key:
+    secure: 7SP59C/adyTlnYzNE7bs/VwQNZq8cQ2vyFxCnlOHDkf/Um2Jlc5E4R5XVlvNoT/Fst4VnOPq97sYg8hqwsBSDNr59F9wgsF5dXfV8taBQmUk6rpn+yNNn08O6AQ4L57v6OTrOdNMphQ43/rSyxJbmEcrP0NjtGiELM+PYQ+N2vSUNcVQyFS/skYU5zeXswG2R111Xk2K4CrLP90V1ASfgHXMxGK1ndb/tJ/+o53eI0oFlqkA9rDF/3bLOS6XGX+VDXsl4ao9lVQuN97pvhh9n0ZzjFrvgp2Ij3fYLnsf79O//fgxR5xd/7iGnAcGkRvl0zND223zwpVS6NajCl8p9h6eTeSh4GSgMqONyS5cyajqMZemutEA0uFKWXIjT/f+UpRHQX879YdhQ0mQaxszQRaTS9iWUs+XjnF4+XzBjSaLBRfiGyhDLrkRug+HVQ/mWvbALBd5SYQt/G4zeBS9jxSj1DC8XtLdeNupvOBT7/ZdNLZYQcmA9y1oY6LCCcaJDJlVb8BiyARnp8pebWP/BXlsgE9lFz4wf/nHfbeQs4kUxRwx6qV5H2Y3ABNVMrUSSrCagJWCqldKP+McZdwy2OMFoNohTdzFFkqgkubyIkIqYnvpx8+YteDm6514JljYOXAGConGar1MgzTxBcko4lQlQiDtUOMlREsHi9mgi0w=
