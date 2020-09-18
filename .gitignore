@@ -3,3 +3,4 @@ npm-debug.log
 client/src/compiled/
 server/.env
 data/*
+.DS_Store
