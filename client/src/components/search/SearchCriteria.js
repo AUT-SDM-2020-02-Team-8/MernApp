@@ -25,7 +25,7 @@ class SearchCriteria extends Component {
   }
 
   removeSearchRow(counter) {
-    const newCriteria = this.state.criteria.filter(criteria => criteria.key != counter.toString())
+    const newCriteria = this.state.criteria.filter(criteria => criteria.key !== counter.toString())
     if (newCriteria.length > 0) {
       this.setState({
         criteria: newCriteria
