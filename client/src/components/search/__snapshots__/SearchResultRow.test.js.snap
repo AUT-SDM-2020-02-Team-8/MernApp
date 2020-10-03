@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage 1`] = `
+<WithStyles(ForwardRef(TableRow))>
+  <WithStyles(ForwardRef(TableCell))>
+    title 1
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    author 1
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    2020
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    reference paper
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    IEEE
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    IEEE
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    TDD
+  </WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))>
+    code quality, team confidence, product quality
+  </WithStyles(ForwardRef(TableCell))>
+</WithStyles(ForwardRef(TableRow))>
+`;

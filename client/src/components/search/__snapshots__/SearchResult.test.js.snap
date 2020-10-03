@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage 1`] = `
+<WithStyles(ForwardRef(TableContainer))>
+  <WithStyles(ForwardRef(Table))>
+    <WithStyles(ForwardRef(TableHead))>
+      <WithStyles(ForwardRef(TableRow))>
+        <WithStyles(ForwardRef(TableCell))>
+          Title
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Author
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Year
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Type
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Journal
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Publisher
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          SE Practice
+        </WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))>
+          Claims
+        </WithStyles(ForwardRef(TableCell))>
+      </WithStyles(ForwardRef(TableRow))>
+    </WithStyles(ForwardRef(TableHead))>
+    <WithStyles(ForwardRef(TableBody))>
+      <SearchResultRow
+        evidence={
+          Object {
+            "_id": "1",
+            "author": "author 1",
+            "claims": Array [
+              "code quality",
+              "team confidence",
+              "product quality",
+            ],
+            "journal": "IEEE",
+            "publisher": "IEEE",
+            "recordType": "reference paper",
+            "sePractice": "TDD",
+            "title": "title 1",
+            "year": "2020",
+          }
+        }
+        key="1"
+      />
+    </WithStyles(ForwardRef(TableBody))>
+  </WithStyles(ForwardRef(Table))>
+</WithStyles(ForwardRef(TableContainer))>
+`;
