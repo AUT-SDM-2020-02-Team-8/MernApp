@@ -264,15 +264,9 @@ class CreateContainer extends Component {
           
           }
 
-          <table>
-            <tr>
-              <td><Button  variant="contained" color="primary" type="submit">Submit</Button></td>
-              <td><Button  variant="contained" color="primary" type="button" onclick="window.location.href='./button-links.php'">Cancel</Button></td>
-            </tr>
-          </table>
           <Grid item xs={ 3 } >
             <div style={{marginBottom: "50px"}}>
-              
+              <td><Button  variant="contained" color="primary" type="submit">Submit</Button></td>
               
             </div>
           </Grid>
