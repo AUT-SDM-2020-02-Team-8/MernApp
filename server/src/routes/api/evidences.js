@@ -71,6 +71,59 @@ router.post("/search", (req, res) => {
   }
 })
 
+router.post("/create", (req, res) => {
+  const { author, title, journal, year, volume, number, pages, doi, _key, _type } = req.body
+
+  if (!title) return res.status(400).json({error: "Please provide the title."})
+
+  Evidence.findOne({title: title}).then( found => {
+    if ( found ) {
+      return res.status(400).json( { error: "This title already exists." } )
+    } else {
+      const metadata = { 
+        AUTHOR: author, 
+        TITLE: title, 
+        JOURNAL: journal,
+        YEAR: year, 
+        key: _key || author.substr(0, 5) + year + title.substr(0, 2),
+        type: _type || "article",
+        VOLUME: volume,
+        NUMBER: number,
+        PAGES: pages,
+        DOI: doi
+      }
+      Evidence.create({
+        title, author, journal, year, metadata, recordType: _type || "article"
+      }).then( (createdEvidence, err )=> {
+        if ( createdEvidence) {
+          return res.status(200).json({success: true})
+        } else {
+          return res.status(400).json({error: "Bad request"})
+
+        }
+      } )
+    }
+    
+  })
+
+
+})
+
+router.post("/parse", (req, res) => {
+
+
+  const { bibtex } = req.body
+  
+  if ( !bibtex) return res.status(400).json({error: "Please provide the file."})
+  
+  const fileData = bibtexParse.entries( bibtex )
+  
+  if ( fileData.length !== 1 ) return res.status( 400 ).json( { error: "File should describe one entry." } )
+  
+  return res.status( 200 ).json( fileData[0] )
+
+})
+
 router.get("/destroy_all", (req, res) => {
   Evidence.deleteMany({}, (err) => {
     return res.status(200).json({})

@@ -6,6 +6,7 @@ import store from "./store"
 import { Container, AppBar, Typography, Toolbar } from "@material-ui/core"
 import { styled } from '@material-ui/core/styles'
 import SearchContainer from './components/search/SearchContainer'
+import CreateContainer from './components/create/CreateContainer'
 
 const BodyContainer = styled(Container)({
   marginTop: '30px'
@@ -27,6 +28,7 @@ class App extends Component {
           </AppBar>
           <BodyContainer>
             <Route exact path="/" component={SearchContainer} />
+            <Route exact path="/create" component={CreateContainer} />
           </BodyContainer>
         </Router>
       </Provider>
