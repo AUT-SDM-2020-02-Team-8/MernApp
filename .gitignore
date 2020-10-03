@@ -4,3 +4,4 @@ client/src/compiled/
 server/.env
 data/*
 .DS_Store
+/.vs
