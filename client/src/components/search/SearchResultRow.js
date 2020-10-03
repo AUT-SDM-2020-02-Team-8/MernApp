@@ -7,12 +7,12 @@ class SearchResultRow extends Component {
       <TableRow>
         <TableCell>{this.props.evidence.title}</TableCell>
         <TableCell>{this.props.evidence.author}</TableCell>
-        <TableCell>{this.props.evidence.year}</TableCell>
-        <TableCell>{this.props.evidence.recordType}</TableCell>
-        <TableCell>{this.props.evidence.journal}</TableCell>
-        <TableCell>{this.props.evidence.publisher}</TableCell>
-        <TableCell>{this.props.evidence.sePractice}</TableCell>
-        <TableCell>{this.props.evidence.claims.join(", ")}</TableCell>
+        <TableCell name="year">{this.props.evidence.year}</TableCell>
+        <TableCell name="type">{this.props.evidence.recordType}</TableCell>
+        <TableCell name="journal">{this.props.evidence.journal}</TableCell>
+        <TableCell name="publisher">{this.props.evidence.publisher}</TableCell>
+        <TableCell name="SEPractice">{this.props.evidence.sePractice}</TableCell>
+        <TableCell name="claims">{this.props.evidence.claims.join(", ")}</TableCell>
       </TableRow>
     )
   }

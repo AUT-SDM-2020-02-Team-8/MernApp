@@ -24,6 +24,8 @@ services:
       - /usr/app/node_modules
     depends_on:
       - server
+    stdin_open: true
+    tty: true
     ports:
       - "3000:3000"
   mongo:
