@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import axios from "axios"
 import { Container, InputLabel, Button, Box, TextField, Grid } from "@material-ui/core"
-
+import { Link } from "react-router-dom"
 
 const defaultState = {
   author: '',
@@ -9,12 +9,10 @@ const defaultState = {
   message: '',
   journal: '',
   year: '',
-
   volume: '',
   number: '',
   pages: '',
   doi: '',
-
   _type: '',
   _key: '',
 }
@@ -30,20 +28,16 @@ class CreateContainer extends Component {
     this.handleTitleChange = this.handleTitleChange.bind(this)
     this.handleJournalChange = this.handleJournalChange.bind(this)
     this.handleYearChange = this.handleYearChange.bind(this)
-    
     this.handleVolumeChange = this.handleVolumeChange.bind(this)
     this.handleNumberChange = this.handleNumberChange.bind(this)
     this.handlePagesChange = this.handlePagesChange.bind(this)
     this.handleDoiChange = this.handleDoiChange.bind(this)
-    
     this.handleFileChange = this.handleFileChange.bind(this)
-
     this.fileInput = React.createRef();
   }
 
   async performSubmit(event) {
     event.preventDefault()
-
     this.setState({message: ""})
 
     const data = {
@@ -51,21 +45,15 @@ class CreateContainer extends Component {
       title: this.state.title,
       journal: this.state.journal,
       year: this.state.year,
-      
       volume: this.state.volume,
       number: this.state.number,
       pages: this.state.pages,
       doi: this.state.doi,
-
       _type: this.state._type,
       _key: this.state._key,
     }
 
-    
-
     try {
-      
-      // const res = await axios.post('http://localhost:8080/api/evidences/create', data)
       const res = await axios.post('/api/evidences/create', data)
       this.setState({
         ...defaultState,
@@ -83,19 +71,14 @@ class CreateContainer extends Component {
             this.setState({
               message: "Please check your connection"
             })
-            
           }
         } catch {
           this.setState({
             message: "Please check your connection"
           })
-
       }
-      
     }
-    
   }
-
 
   handleAuthorChange(event) {
     this.setState({ author: event.target.value })
@@ -129,7 +112,6 @@ class CreateContainer extends Component {
     this.setState({ doi: event.target.value })
   }
 
-
   async handleFileChange(event) {
     
     const file = this.fileInput.current.files[ 0 ]
@@ -138,13 +120,8 @@ class CreateContainer extends Component {
     var reader = new FileReader();
 
     reader.onload = async event => {
-
       const text = event.target.result
-
-
       try {
-        
-        // const res = await axios.post( 'http://localhost:8080/api/evidences/parse', {bibtex: text})
         const res = await axios.post( '/api/evidences/parse', {bibtex: text})
         if ( !res.data || res.data.error || res.status !== 200 ) {
           return alert( res.data.error || "Error with file parsing" )
@@ -166,11 +143,6 @@ class CreateContainer extends Component {
         this.setState({
           author, title, journal, year, volume, number, pages, doi, _key: key, _type: type
         })
-        
-
-
-
-        
       } catch (error) {
         try {
           const msg = error.response.data.error
@@ -179,101 +151,72 @@ class CreateContainer extends Component {
           } else {
             return alert( "Error, please check you connection" )
           }
-
         } catch {
           return alert( "Error, please check you connection" )
         }
-
       }
-
     }
     reader.onerror = error => {
       return alert( "Error with file parsing" )
     } 
-
-    reader.readAsText( file )
-
-
-
+    reader.readAsText(file)
   }
 
   render() {
     return (
       <Container maxWidth='sm'>
-
+        <Link to='/'>Back to search</Link>
         <Box textAlign="center" pb="40px">
-          <h1>New Article</h1>  
-                   
+          <h1>New Article</h1>
         </Box>
-
         <form onSubmit={this.performSubmit}>
           <Box mb="20px">
             <InputLabel>Bibtex File</InputLabel>
             <input onChange={this.handleFileChange} type='file' id='uploadFile' ref={ this.fileInput } accept="text/plain" />
           </Box>
           <Box mb="20px">
-
             <InputLabel>Author</InputLabel>
             <TextField fullWidth value={ this.state.author } onChange={ this.handleAuthorChange }></TextField>
           </Box>
-            
           <Box mb="20px">
             <InputLabel>Title</InputLabel>
             <TextField fullWidth required value={ this.state.title } onChange={ this.handleTitleChange }></TextField>
           </Box>
-          
           <Box mb="20px">
             <InputLabel>Journal</InputLabel>
             <TextField  fullWidth value={ this.state.journal } onChange={ this.handleJournalChange }></TextField>
           </Box>
-          
-
           <Box mb="20px">
             <InputLabel>Volume</InputLabel>
-            <TextField type="number"   value={ this.state.volume } onChange={ this.handleVolumeChange }></TextField>
+            <TextField type="number" value={ this.state.volume } onChange={ this.handleVolumeChange }></TextField>
           </Box>
-
           <Box mb="20px">
             <InputLabel>Year</InputLabel>
-            <TextField type="number"   value={ this.state.year } onChange={ this.handleYearChange }></TextField>
+            <TextField type="number" value={ this.state.year } onChange={ this.handleYearChange }></TextField>
           </Box>
-
           <Box mb="20px">
             <InputLabel>Number</InputLabel>
-            <TextField type="number"   value={ this.state.number } onChange={ this.handleNumberChange }></TextField>
+            <TextField type="number" value={ this.state.number } onChange={ this.handleNumberChange }></TextField>
           </Box>
-
           <Box mb="20px">
             <InputLabel>Pages</InputLabel>
-            <TextField type="text"   value={ this.state.pages } onChange={ this.handlePagesChange }></TextField>
+            <TextField type="text" value={ this.state.pages } onChange={ this.handlePagesChange }></TextField>
           </Box>
-
           <Box mb="20px">
             <InputLabel>DOI</InputLabel>
             <TextField fullWidth value={ this.state.doi } onChange={ this.handleDoiChange }></TextField>
           </Box>
-
-
-
           {this.state.message && 
-
-          <Box mb="20px" p='10px' style={{background: "#dedede"}}>
-
-            { this.state.message }
-          </Box>
-          
+            <Box mb="20px" p='10px' style={{background: "#dedede"}}>
+              { this.state.message }
+            </Box>
           }
-
           <Grid item xs={ 3 } >
             <div style={{marginBottom: "50px"}}>
-              <td><Button  variant="contained" color="primary" type="submit">Submit</Button></td>
-              
+              <td><Button variant="contained" color="primary" type="submit">Submit</Button></td>
             </div>
           </Grid>
-
-
         </form>
-
       </Container>
     )
   }

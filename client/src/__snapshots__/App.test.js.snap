@@ -32,6 +32,11 @@ exports[`renders homepage 1`] = `
         exact={true}
         path="/"
       />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/create"
+      />
     </Styled(WithStyles(ForwardRef(Container)))>
   </BrowserRouter>
 </Provider>
