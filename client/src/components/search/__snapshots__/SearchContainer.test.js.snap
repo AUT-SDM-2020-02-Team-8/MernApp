@@ -208,7 +208,9 @@ exports[`renders homepage 1`] = `
     </WithStyles(ForwardRef(Grid))>
   </form>
   <SearchResult
+    direction={1}
     evidences={Array []}
+    sortHandler={[Function]}
   />
 </WithStyles(ForwardRef(Container))>
 `;
