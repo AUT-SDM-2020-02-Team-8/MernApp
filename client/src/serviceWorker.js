@@ -133,3 +133,49 @@ export function unregister() {
     });
   }
 }
+
+//Find the <th> elements of the table to make them clickable
+function makeSortable(table) {
+    var headers=table.getElementsByTagName("th");
+    for(var i=0;i<headers.length;i++){
+        (function(n){
+            var flag=false;
+            headers[n].onclick=function(){
+                // sortrows(table,n);
+                var tbody=table.tBodies[0];
+                var rows=tbody.getElementsByTagName("tr");
+                rows=Array.prototype.slice.call(rows,0);
+ 
+                //Sort the rows based on the value of the NTH <td> element
+                rows.sort(function(row1,row2){
+                    var cell1=row1.getElementsByTagName("td")[n];
+                    var cell2=row2.getElementsByTagName("td")[n];
+                    var val1=cell1.textContent||cell1.innerText;
+                    var val2=cell2.textContent||cell2.innerText;
+ 
+                    if(val1<val2){
+                        return -1;
+                    }else if(val1>val2){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                });
+                if(flag){
+                    rows.reverse();
+                }
+                
+                for(var i=0;i<rows.length;i++){
+                    tbody.appendChild(rows[i]);
+                }
+ 
+                flag=!flag;
+            }
+        }(i));
+    }
+}
+ 
+window.onload=function(){
+    var table=document.getElementsByTagName("table")[0];
+    makeSortable(table);
+}
