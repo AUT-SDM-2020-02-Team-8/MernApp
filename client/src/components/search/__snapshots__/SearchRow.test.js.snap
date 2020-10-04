@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage 1`] = `
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  spacing={2}
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={1}
+  >
+    <WithStyles(ForwardRef(InputLabel))>
+      If
+    </WithStyles(ForwardRef(InputLabel))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={3}
+  >
+    <WithStyles(ForwardRef(Select))
+      displayEmpty={true}
+      fullWidth={true}
+    >
+      <WithStyles(ForwardRef(MenuItem))
+        disabled={true}
+      >
+        Name of field
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="Title"
+      >
+        Title
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="Author"
+      >
+        Author
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="Method"
+      >
+        Method
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="Benefit"
+      >
+        Benefit
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Select))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={2}
+  >
+    <WithStyles(ForwardRef(Select))
+      displayEmpty={true}
+      fullWidth={true}
+    >
+      <WithStyles(ForwardRef(MenuItem))
+        disabled={true}
+      >
+        operator
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="contains"
+      >
+        contains
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="does not contain"
+      >
+        does not contain
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="begins with"
+      >
+        begins with
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="ends with"
+      >
+        ends with
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="is equal to"
+      >
+        is equal to
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="is less than"
+      >
+        is less than
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="is less than or equal to"
+      >
+        is less than or equal to
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="is more than"
+      >
+        is more than
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="is more than or equal to"
+      >
+        is more than or equal to
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Select))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={2}
+  >
+    <WithStyles(ForwardRef(TextField))
+      fullWidth={true}
+    />
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={2}
+  >
+    <WithStyles(ForwardRef(Select))
+      defaultValue="OR"
+      fullWidth={true}
+    >
+      <WithStyles(ForwardRef(MenuItem))
+        value="AND"
+      >
+        AND
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        selected={true}
+        value="OR"
+      >
+        OR
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="AND NOT"
+      >
+        AND NOT
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))
+        value="OR NOT"
+      >
+        OR NOT
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Select))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={2}
+  >
+    <WithStyles(ForwardRef(Button))>
+      +
+    </WithStyles(ForwardRef(Button))>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      -
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;

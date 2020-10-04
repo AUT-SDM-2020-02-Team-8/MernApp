@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import SearchRow from './SearchRow';
 
 test('renders homepage', () => {
-  const wrapper = shallow(<App />);
+  const wrapper = shallow(<SearchRow />);
   expect(wrapper).toMatchSnapshot();
 });
