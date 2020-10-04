@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { TableRow, TableCell } from "@material-ui/core"
 
 class SearchResultRow extends Component {
-  render() {
+  renderCells() {
     let cells = []
     for (const i of this.props.allColumns) {
       if (this.props.chosenColumns.indexOf(i) >= 0) {
@@ -10,10 +10,12 @@ class SearchResultRow extends Component {
         cells.push(<TableCell key={i}>{txt}</TableCell>)
       }
     }
+    return cells
+  }
+
+  render() {
     return (
-      <TableRow>
-        {cells}
-      </TableRow>
+      <TableRow>{this.renderCells()}</TableRow>
     )
   }
 }

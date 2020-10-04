@@ -13,6 +13,20 @@ test('renders homepage', () => {
     sePractice: 'TDD',
     claims: ["code quality", "team confidence", "product quality"]
   }
-  const wrapper = shallow(<SearchResultRow evidence={evidence} />);
+  const headerMapping = {
+    title: 'Title',
+    author: 'Author',
+    year: 'Year',
+    recordType: 'Type',
+    journal: 'Journal',
+    publisher: 'Publisher',
+    sePractice: 'SE Practice',
+    claims: 'Claims'
+  }
+  const wrapper = shallow(<SearchResultRow
+    evidence={evidence}
+    allColumns={Object.keys(headerMapping)}
+    chosenColumns={Object.keys(headerMapping)}
+  />);
   expect(wrapper).toMatchSnapshot();
 });

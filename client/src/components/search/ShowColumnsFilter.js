@@ -33,7 +33,7 @@ class ShowColumnsFilter extends Component {
     this.setState({ chosenColumns: chosenColumns })
   }
 
-  render() {
+  renderCheckBoxes() {
     let checkBoxes = []
     for (const [key, value] of Object.entries(this.props.headerMapping)) {
       checkBoxes.push(<ShowColumnCheckbox
@@ -44,7 +44,10 @@ class ShowColumnsFilter extends Component {
         handleChange={this.toggleColumn}
       />)
     }
-    
+    return checkBoxes
+  }
+
+  render() {
     return (
       <div>
         <Button onClick={this.handleClick}>
@@ -60,7 +63,7 @@ class ShowColumnsFilter extends Component {
           <MenuItem>
             <FormControl component="fieldset">
               <FormLabel component="legend">Choose columns to show</FormLabel>
-              <FormGroup>{checkBoxes}</FormGroup>
+              <FormGroup>{this.renderCheckBoxes()}</FormGroup>
             </FormControl>
           </MenuItem>
         </Menu>
