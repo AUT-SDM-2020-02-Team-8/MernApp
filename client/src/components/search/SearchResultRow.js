@@ -3,16 +3,16 @@ import { TableRow, TableCell } from "@material-ui/core"
 
 class SearchResultRow extends Component {
   render() {
+    let cells = []
+    for (const i of this.props.allColumns) {
+      if (this.props.chosenColumns.indexOf(i) >= 0) {
+        const txt = Array.isArray(this.props.evidence[i]) ? this.props.evidence[i].join(', ') : this.props.evidence[i]
+        cells.push(<TableCell key={i}>{txt}</TableCell>)
+      }
+    }
     return (
       <TableRow>
-        <TableCell>{this.props.evidence.title}</TableCell>
-        <TableCell>{this.props.evidence.author}</TableCell>
-        <TableCell name="year">{this.props.evidence.year}</TableCell>
-        <TableCell name="type">{this.props.evidence.recordType}</TableCell>
-        <TableCell name="journal">{this.props.evidence.journal}</TableCell>
-        <TableCell name="publisher">{this.props.evidence.publisher}</TableCell>
-        <TableCell name="SEPractice">{this.props.evidence.sePractice}</TableCell>
-        <TableCell name="claims">{this.props.evidence.claims.join(", ")}</TableCell>
+        {cells}
       </TableRow>
     )
   }
