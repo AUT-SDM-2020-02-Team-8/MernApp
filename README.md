@@ -25,6 +25,16 @@ docker-compose run server npm test
 
 The app is deployed to Heroku at http://sdmteam8.herokuapp.com/
 
+## Guideline for implementing new features
+
+Please follow the steps below to implement a new feature
+- Checkout latest code from staging
+- Create a new branch on latest staging
+- Implement new feature on that branch
+- Commit and push new branch to github
+- Create a pull request for the new branch comparing to staging
+- Ensure travisCI is green and ask other members to review your code
+
 ### Notes
 
 #### Boilerplate repo
