@@ -3,6 +3,7 @@ import axios from "axios"
 import SearchResult from "./SearchResult"
 import SearchCriteria from "./SearchCriteria"
 import { Container, InputLabel, Button, Select, MenuItem, TextField, Grid } from "@material-ui/core"
+import { Link } from "react-router-dom"
 
 class SearchContainer extends Component {
   constructor() {
@@ -93,8 +94,11 @@ class SearchContainer extends Component {
               </Select>
             </Grid>
             <SearchCriteria />
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <Button variant="contained" color="primary" type="submit">Search</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Link to='/create'>Submit new article</Link>
             </Grid>
           </Grid>
         </form>

@@ -195,7 +195,7 @@ exports[`renders homepage 1`] = `
       <SearchCriteria />
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={3}
+        xs={2}
       >
         <WithStyles(ForwardRef(Button))
           color="primary"
@@ -204,6 +204,16 @@ exports[`renders homepage 1`] = `
         >
           Search
         </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <Link
+          to="/create"
+        >
+          Submit new article
+        </Link>
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </form>
