@@ -5,26 +5,40 @@ exports[`renders homepage 1`] = `
   <WithStyles(ForwardRef(Table))>
     <WithStyles(ForwardRef(TableHead))>
       <WithStyles(ForwardRef(TableRow))>
-        <WithStyles(ForwardRef(TableCell))>
-          Title
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Title  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          Author
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Author  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          Year
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Year  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          Type
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Type  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          Journal
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Journal  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          Publisher
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          Publisher  
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
-          SE Practice
+        <WithStyles(ForwardRef(TableCell))
+          onClick={[Function]}
+        >
+          SE Practice  
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))>
           Claims

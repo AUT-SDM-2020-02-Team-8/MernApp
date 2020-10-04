@@ -11,12 +11,14 @@ class SearchContainer extends Component {
       evidences: [],
       fromYear: '',
       toYear: '',
-      query: ''
+      query: '',
+      direction: 1
     }
     this.performSearch = this.performSearch.bind(this)
     this.handleFromYearChange = this.handleFromYearChange.bind(this)
     this.handleToYearChange = this.handleToYearChange.bind(this)
     this.handleQueryChange = this.handleQueryChange.bind(this)
+    this.sortBy = this.sortBy.bind(this)
   }
 
   async performSearch(event) {
@@ -42,6 +44,25 @@ class SearchContainer extends Component {
 
   handleQueryChange(event) {
     this.setState({ query: event.target.value })
+  }
+
+  sortBy(column) {
+    let newEvidences = [...this.state.evidences]
+    newEvidences.sort((a, b) => {
+      let compareValue = 0
+      if (a[column] > b[column]) {
+        compareValue = this.state.direction
+      }
+      else if (a[column] < b[column]) {
+        compareValue = -1 * this.state.direction
+      }
+      return compareValue;
+    })
+    this.setState({
+      evidences: newEvidences,
+      direction: (this.state.direction * -1),
+      sortByColumn: column
+    })
   }
 
   render() {
@@ -77,7 +98,12 @@ class SearchContainer extends Component {
             </Grid>
           </Grid>
         </form>
-        <SearchResult evidences={this.state.evidences} />
+        <SearchResult
+          evidences={this.state.evidences}
+          sortHandler={this.sortBy}
+          sortByColumn={this.state.sortByColumn}
+          direction={this.state.direction}
+        />
       </Container>
     )
   }
