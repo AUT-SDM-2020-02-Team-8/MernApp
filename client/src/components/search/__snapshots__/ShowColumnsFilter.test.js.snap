@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage 1`] = `
+<div>
+  <WithStyles(ForwardRef(Button))
+    onClick={[Function]}
+  >
+    Show columns
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    id="columnFilterBox"
+    keepMounted={true}
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(FormControl))
+        component="fieldset"
+      >
+        <WithStyles(ForwardRef(FormLabel))
+          component="legend"
+        >
+          Choose columns to show
+        </WithStyles(ForwardRef(FormLabel))>
+        <WithStyles(ForwardRef(FormGroup))>
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="title"
+            label="Title"
+            name="title"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="author"
+            label="Author"
+            name="author"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="year"
+            label="Year"
+            name="year"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="recordType"
+            label="Type"
+            name="recordType"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="journal"
+            label="Journal"
+            name="journal"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="publisher"
+            label="Publisher"
+            name="publisher"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="sePractice"
+            label="SE Practice"
+            name="sePractice"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="claims"
+            label="Claims"
+            name="claims"
+          />
+        </WithStyles(ForwardRef(FormGroup))>
+      </WithStyles(ForwardRef(FormControl))>
+    </WithStyles(ForwardRef(MenuItem))>
+  </WithStyles(ForwardRef(Menu))>
+</div>
+`;

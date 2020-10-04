@@ -2,51 +2,108 @@
 
 exports[`renders homepage 1`] = `
 <WithStyles(ForwardRef(TableContainer))>
+  <ShowColumnsFilter
+    headerMapping={
+      Object {
+        "author": "Author",
+        "claims": "Claims",
+        "journal": "Journal",
+        "publisher": "Publisher",
+        "recordType": "Type",
+        "sePractice": "SE Practice",
+        "title": "Title",
+        "year": "Year",
+      }
+    }
+    showColumns={[Function]}
+  />
   <WithStyles(ForwardRef(Table))>
     <WithStyles(ForwardRef(TableHead))>
       <WithStyles(ForwardRef(TableRow))>
         <WithStyles(ForwardRef(TableCell))
+          key="title"
           onClick={[Function]}
         >
-          Title  
+          Title
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="author"
           onClick={[Function]}
         >
-          Author  
+          Author
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="year"
           onClick={[Function]}
         >
-          Year  
+          Year
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="recordType"
           onClick={[Function]}
         >
-          Type  
+          Type
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="journal"
           onClick={[Function]}
         >
-          Journal  
+          Journal
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="publisher"
           onClick={[Function]}
         >
-          Publisher  
+          Publisher
+            
         </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
+          key="sePractice"
           onClick={[Function]}
         >
-          SE Practice  
+          SE Practice
+            
         </WithStyles(ForwardRef(TableCell))>
-        <WithStyles(ForwardRef(TableCell))>
+        <WithStyles(ForwardRef(TableCell))
+          key="claims"
+          onClick={[Function]}
+        >
           Claims
+            
         </WithStyles(ForwardRef(TableCell))>
       </WithStyles(ForwardRef(TableRow))>
     </WithStyles(ForwardRef(TableHead))>
     <WithStyles(ForwardRef(TableBody))>
       <SearchResultRow
+        allColumns={
+          Array [
+            "title",
+            "author",
+            "year",
+            "recordType",
+            "journal",
+            "publisher",
+            "sePractice",
+            "claims",
+          ]
+        }
+        chosenColumns={
+          Array [
+            "title",
+            "author",
+            "year",
+            "recordType",
+            "journal",
+            "publisher",
+            "sePractice",
+            "claims",
+          ]
+        }
         evidence={
           Object {
             "_id": "1",

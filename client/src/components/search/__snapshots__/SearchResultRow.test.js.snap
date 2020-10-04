@@ -2,28 +2,44 @@
 
 exports[`renders homepage 1`] = `
 <WithStyles(ForwardRef(TableRow))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="title"
+  >
     title 1
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="author"
+  >
     author 1
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="year"
+  >
     2020
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="recordType"
+  >
     reference paper
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="journal"
+  >
     IEEE
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="publisher"
+  >
     IEEE
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="sePractice"
+  >
     TDD
   </WithStyles(ForwardRef(TableCell))>
-  <WithStyles(ForwardRef(TableCell))>
+  <WithStyles(ForwardRef(TableCell))
+    key="claims"
+  >
     code quality, team confidence, product quality
   </WithStyles(ForwardRef(TableCell))>
 </WithStyles(ForwardRef(TableRow))>

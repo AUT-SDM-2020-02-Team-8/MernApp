@@ -2,18 +2,20 @@ import React, { Component } from "react"
 import { TableRow, TableCell } from "@material-ui/core"
 
 class SearchResultRow extends Component {
+  renderCells() {
+    let cells = []
+    for (const i of this.props.allColumns) {
+      if (this.props.chosenColumns.indexOf(i) >= 0) {
+        const txt = Array.isArray(this.props.evidence[i]) ? this.props.evidence[i].join(', ') : this.props.evidence[i]
+        cells.push(<TableCell key={i}>{txt}</TableCell>)
+      }
+    }
+    return cells
+  }
+
   render() {
     return (
-      <TableRow>
-        <TableCell>{this.props.evidence.title}</TableCell>
-        <TableCell>{this.props.evidence.author}</TableCell>
-        <TableCell>{this.props.evidence.year}</TableCell>
-        <TableCell>{this.props.evidence.recordType}</TableCell>
-        <TableCell>{this.props.evidence.journal}</TableCell>
-        <TableCell>{this.props.evidence.publisher}</TableCell>
-        <TableCell>{this.props.evidence.sePractice}</TableCell>
-        <TableCell>{this.props.evidence.claims.join(", ")}</TableCell>
-      </TableRow>
+      <TableRow>{this.renderCells()}</TableRow>
     )
   }
 }
