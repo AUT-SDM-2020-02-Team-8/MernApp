@@ -141,15 +141,16 @@ function makeSortable(table) {
         (function(n){
             var flag=false;
             headers[n].onclick=function(){
-                // sortrows(table,n);1st<tbody>
-                var rows=tbody.getElementsByTagName("tr");//All the rows in the TBody
-                rows=Array.prototype.slice.call(rows,0);//A snapshot of a real array
+                // sortrows(table,n);
+                var tbody=table.tBodies[0];
+                var rows=tbody.getElementsByTagName("tr");
+                rows=Array.prototype.slice.call(rows,0);
  
                 //Sort the rows based on the value of the NTH <td> element
                 rows.sort(function(row1,row2){
-                    var cell1=row1.getElementsByTagName("td")[n];//Get the Nth cell
+                    var cell1=row1.getElementsByTagName("td")[n];
                     var cell2=row2.getElementsByTagName("td")[n];
-                    var val1=cell1.textContent||cell1.innerText;//Get the text content
+                    var val1=cell1.textContent||cell1.innerText;
                     var val2=cell2.textContent||cell2.innerText;
  
                     if(val1<val2){
@@ -163,9 +164,7 @@ function makeSortable(table) {
                 if(flag){
                     rows.reverse();
                 }
-                //Add the rows to the end in their order in the TBody
-                //This will automatically remove them from their current location, so there is no need to delete them in advance
-                //If <tbody> also contains any other elements other than <tr>, these nodes will float to the top position
+                
                 for(var i=0;i<rows.length;i++){
                     tbody.appendChild(rows[i]);
                 }
