@@ -2,17 +2,7 @@ import React, { Component } from "react"
 import SearchResultRow from "./SearchResultRow"
 import ShowColumnsFilter from "./ShowColumnsFilter"
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core"
-
-const headerMapping = {
-  title: 'Title',
-  author: 'Author',
-  year: 'Year',
-  recordType: 'Type',
-  journal: 'Journal',
-  publisher: 'Publisher',
-  sePractice: 'SE Practice',
-  claims: 'Claims'
-}
+import { headerMapping } from './../constants'
 
 class SearchResult extends Component {
   constructor() {
@@ -39,7 +29,7 @@ class SearchResult extends Component {
     }
     return (
       <TableContainer>
-        <ShowColumnsFilter headerMapping={headerMapping} showColumns={this.showColumns}/>
+        <ShowColumnsFilter showColumns={this.showColumns}/>
         {this.props.evidences.length > 0 &&
           <Table>
             <TableHead>
@@ -52,7 +42,6 @@ class SearchResult extends Component {
                     key={evidence._id}
                     evidence={evidence}
                     chosenColumns={this.state.chosenColumns}
-                    allColumns={Object.keys(headerMapping)}
                   />
                 )
               })}

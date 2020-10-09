@@ -3,23 +3,18 @@
 exports[`renders homepage 1`] = `
 <WithStyles(ForwardRef(TableContainer))>
   <ShowColumnsFilter
-    headerMapping={
-      Object {
-        "author": "Author",
-        "claims": "Claims",
-        "journal": "Journal",
-        "publisher": "Publisher",
-        "recordType": "Type",
-        "sePractice": "SE Practice",
-        "title": "Title",
-        "year": "Year",
-      }
-    }
     showColumns={[Function]}
   />
   <WithStyles(ForwardRef(Table))>
     <WithStyles(ForwardRef(TableHead))>
       <WithStyles(ForwardRef(TableRow))>
+        <WithStyles(ForwardRef(TableCell))
+          key="levelOfSupport"
+          onClick={[Function]}
+        >
+          Level of Support
+            
+        </WithStyles(ForwardRef(TableCell))>
         <WithStyles(ForwardRef(TableCell))
           key="title"
           onClick={[Function]}
@@ -80,20 +75,9 @@ exports[`renders homepage 1`] = `
     </WithStyles(ForwardRef(TableHead))>
     <WithStyles(ForwardRef(TableBody))>
       <SearchResultRow
-        allColumns={
-          Array [
-            "title",
-            "author",
-            "year",
-            "recordType",
-            "journal",
-            "publisher",
-            "sePractice",
-            "claims",
-          ]
-        }
         chosenColumns={
           Array [
+            "levelOfSupport",
             "title",
             "author",
             "year",
