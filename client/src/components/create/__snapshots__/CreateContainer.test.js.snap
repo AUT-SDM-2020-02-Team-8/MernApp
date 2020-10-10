@@ -2,6 +2,7 @@
 
 exports[`renders create container 1`] = `
 <WithStyles(ForwardRef(Container))
+  className="submitPage"
   maxWidth="sm"
 >
   <Link
@@ -9,140 +10,230 @@ exports[`renders create container 1`] = `
   >
     Back to search
   </Link>
-  <Styled(MuiBox)
-    pb="40px"
-    textAlign="center"
-  >
-    <h1>
-      New Article
-    </h1>
-  </Styled(MuiBox)>
+  <h1>
+    New Article
+  </h1>
   <form
     onSubmit={[Function]}
   >
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Bibtex File
-      </WithStyles(ForwardRef(InputLabel))>
-      <input
-        accept="text/plain"
-        id="uploadFile"
-        onChange={[Function]}
-        type="file"
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Author
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        fullWidth={true}
-        onChange={[Function]}
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Title
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        fullWidth={true}
-        onChange={[Function]}
-        required={true}
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Journal
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        fullWidth={true}
-        onChange={[Function]}
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Volume
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        onChange={[Function]}
-        type="number"
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Year
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        onChange={[Function]}
-        type="number"
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Number
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        onChange={[Function]}
-        type="number"
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        Pages
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        onChange={[Function]}
-        type="text"
-      />
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      mb="20px"
-    >
-      <WithStyles(ForwardRef(InputLabel))>
-        DOI
-      </WithStyles(ForwardRef(InputLabel))>
-      <WithStyles(ForwardRef(TextField))
-        fullWidth={true}
-        onChange={[Function]}
-      />
-    </Styled(MuiBox)>
     <WithStyles(ForwardRef(Grid))
+      className="successMsg"
       item={true}
-      xs={3}
+      xs={12}
+    />
+    <WithStyles(ForwardRef(Grid))
+      container={true}
+      spacing={3}
     >
-      <div
-        style={
-          Object {
-            "marginBottom": "50px",
-          }
-        }
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
       >
-        <td>
-          <WithStyles(ForwardRef(Button))
-            color="primary"
-            type="submit"
-            variant="contained"
+        <WithStyles(ForwardRef(InputLabel))>
+          Bibtex File
+        </WithStyles(ForwardRef(InputLabel))>
+        <input
+          accept="text/plain"
+          onChange={[Function]}
+          type="file"
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="Title"
+          name="title"
+          onChange={[Function]}
+          required={true}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="Author"
+          name="author"
+          onChange={[Function]}
+          required={true}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="Journal"
+          name="journal"
+          onChange={[Function]}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={6}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          inputProps={
+            Object {
+              "min": 1,
+              "onKeyDown": [Function],
+              "step": 1,
+            }
+          }
+          label="Volume"
+          name="volume"
+          onChange={[Function]}
+          type="number"
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={6}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          inputProps={
+            Object {
+              "min": 1900,
+              "onKeyDown": [Function],
+              "step": 1,
+            }
+          }
+          label="Year"
+          name="year"
+          onChange={[Function]}
+          type="number"
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={6}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          inputProps={
+            Object {
+              "min": 1,
+              "onKeyDown": [Function],
+              "step": 1,
+            }
+          }
+          label="Number"
+          name="number"
+          onChange={[Function]}
+          type="number"
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={6}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          inputProps={
+            Object {
+              "pattern": "^[0-9]+$|^[0-9]+([-]{1,2}|,)[0-9]*$",
+            }
+          }
+          label="Pages"
+          name="pages"
+          onChange={[Function]}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="DOI"
+          name="doi"
+          onChange={[Function]}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="Publisher"
+          name="publisher"
+          onChange={[Function]}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          id="se-practice-select-label"
+        >
+          SE Practice
+        </WithStyles(ForwardRef(InputLabel))>
+        <WithStyles(ForwardRef(Select))
+          fullWidth={true}
+          label="SE Practice"
+          labelId="se-practice-select-label"
+          name="sePractice"
+          onChange={[Function]}
+          value=""
+        >
+          <WithStyles(ForwardRef(MenuItem))
+            key=""
+            value=""
           >
-            Submit
-          </WithStyles(ForwardRef(Button))>
-        </td>
-      </div>
+             
+          </WithStyles(ForwardRef(MenuItem))>
+          <WithStyles(ForwardRef(MenuItem))
+            key="TDD"
+            value="TDD"
+          >
+            TDD
+             
+          </WithStyles(ForwardRef(MenuItem))>
+        </WithStyles(ForwardRef(Select))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(TextField))
+          fullWidth={true}
+          label="Email"
+          name="email"
+          onChange={[Function]}
+          required={true}
+          value=""
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={3}
+      >
+        <WithStyles(ForwardRef(Button))
+          color="primary"
+          type="submit"
+          variant="contained"
+        >
+          Submit
+        </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </form>
 </WithStyles(ForwardRef(Container))>
