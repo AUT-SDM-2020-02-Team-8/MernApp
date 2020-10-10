@@ -2,6 +2,14 @@
 
 exports[`renders homepage 1`] = `
 <WithStyles(ForwardRef(Container))>
+  <Link
+    to="/create"
+  >
+    Submit new article
+  </Link>
+  <h1>
+    Search
+  </h1>
   <form
     onSubmit={[Function]}
   >
@@ -28,19 +36,17 @@ exports[`renders homepage 1`] = `
           value=""
         >
           <WithStyles(ForwardRef(MenuItem))
+            key=""
             value=""
           >
              
           </WithStyles(ForwardRef(MenuItem))>
           <WithStyles(ForwardRef(MenuItem))
-            key=""
-            value=""
-          />
-          <WithStyles(ForwardRef(MenuItem))
             key="TDD"
             value="TDD"
           >
             TDD
+             
           </WithStyles(ForwardRef(MenuItem))>
         </WithStyles(ForwardRef(Select))>
       </WithStyles(ForwardRef(Grid))>
@@ -72,6 +78,7 @@ exports[`renders homepage 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
+        key="This year"
         xs={2}
       >
         <WithStyles(ForwardRef(InputLabel))>
@@ -91,6 +98,7 @@ exports[`renders homepage 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
+        key="Last 3 years"
         xs={2}
       >
         <WithStyles(ForwardRef(InputLabel))>
@@ -110,6 +118,7 @@ exports[`renders homepage 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
+        key="Last 5 years"
         xs={2}
       >
         <WithStyles(ForwardRef(InputLabel))>
@@ -129,6 +138,7 @@ exports[`renders homepage 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
+        key="Custom"
         xs={2}
       >
         <WithStyles(ForwardRef(InputLabel))>
@@ -185,16 +195,6 @@ exports[`renders homepage 1`] = `
         >
           Search
         </WithStyles(ForwardRef(Button))>
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        xs={2}
-      >
-        <Link
-          to="/create"
-        >
-          Submit new article
-        </Link>
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </form>
