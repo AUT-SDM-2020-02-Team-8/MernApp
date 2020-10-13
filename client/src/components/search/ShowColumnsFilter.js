@@ -1,13 +1,14 @@
 import React, { Component } from "react"
 import { Menu, Button, MenuItem, FormControl, FormLabel, FormGroup } from "@material-ui/core"
 import ShowColumnCheckbox from './ShowColumnCheckbox'
+import { headerMapping } from './../constants'
 
 class ShowColumnsFilter extends Component {
-  constructor(props) {
+  constructor() {
     super()
     this.state = {
       anchorEl: null,
-      chosenColumns: Object.keys(props.headerMapping)
+      chosenColumns: Object.keys(headerMapping)
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -35,7 +36,7 @@ class ShowColumnsFilter extends Component {
 
   renderCheckBoxes() {
     let checkBoxes = []
-    for (const [key, value] of Object.entries(this.props.headerMapping)) {
+    for (const [key, value] of Object.entries(headerMapping)) {
       checkBoxes.push(<ShowColumnCheckbox
         key={key}
         name={key}

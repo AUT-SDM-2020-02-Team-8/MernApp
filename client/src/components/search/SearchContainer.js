@@ -1,33 +1,41 @@
 import React, { Component } from "react"
 import axios from "axios"
 import SearchResult from "./SearchResult"
-import SearchCriteria from "./SearchCriteria"
-import { Container, InputLabel, Button, Select, MenuItem, TextField, Grid } from "@material-ui/core"
+import { Container, InputLabel, Button, Select, MenuItem, Grid, Slider, Radio } from "@material-ui/core"
 import { Link } from "react-router-dom"
+import { sePracticeOptions } from './../constants'
+
+const currentYear = new Date().getFullYear()
 
 class SearchContainer extends Component {
   constructor() {
     super()
     this.state = {
       evidences: [],
-      fromYear: '',
-      toYear: '',
-      query: '',
-      direction: 1
+      claimedBenefits: [],
+      sePractice: '',
+      direction: 1,
+      yearRange: [2000, currentYear],
+      yearOption: '1'
     }
     this.performSearch = this.performSearch.bind(this)
-    this.handleFromYearChange = this.handleFromYearChange.bind(this)
-    this.handleToYearChange = this.handleToYearChange.bind(this)
-    this.handleQueryChange = this.handleQueryChange.bind(this)
+    this.handleSePracticeChange = this.handleSePracticeChange.bind(this)
+    this.handleClaimedBenefitsChange = this.handleClaimedBenefitsChange.bind(this)
+    this.handleYearRangeChange = this.handleYearRangeChange.bind(this)
+    this.handleYearOptionChange = this.handleYearOptionChange.bind(this)
     this.sortBy = this.sortBy.bind(this)
   }
 
   async performSearch(event) {
     event.preventDefault()
+    let yearRange = this.state.yearRange
+    if (this.state.yearOption !== '0') {
+      yearRange = [currentYear - parseInt(this.state.yearOption) + 1, currentYear]
+    }
     const queryString = {
-      query: this.state.query,
-      fromYear: this.state.fromYear,
-      toYear: this.state.toYear
+      sePractice: this.state.sePractice,
+      claims: this.state.claimedBenefits,
+      yearRange: yearRange
     }
     const res = await axios.post('/api/evidences/search', queryString)
     this.setState({
@@ -35,16 +43,20 @@ class SearchContainer extends Component {
     })
   }
 
-  handleFromYearChange(event) {
-    this.setState({ fromYear: event.target.value })
+  handleSePracticeChange(event) {
+    this.setState({ sePractice: event.target.value, claimedBenefits: [] })
   }
 
-  handleToYearChange(event) {
-    this.setState({ toYear: event.target.value })
+  handleClaimedBenefitsChange(event) {
+    this.setState({ claimedBenefits: event.target.value })
   }
 
-  handleQueryChange(event) {
-    this.setState({ query: event.target.value })
+  handleYearRangeChange(event, newValue) {
+    this.setState({ yearRange: newValue })
+  }
+
+  handleYearOptionChange(event) {
+    this.setState({ yearOption: event.target.value })
   }
 
   sortBy(column) {
@@ -71,29 +83,83 @@ class SearchContainer extends Component {
       <Container>
         <form onSubmit={this.performSearch}>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <InputLabel>Search query</InputLabel>
-              <TextField fullWidth value={this.state.query} onChange={this.handleQueryChange}></TextField>
+            <Grid item xs={3}>
+              <InputLabel>SE Practice</InputLabel>
             </Grid>
             <Grid item xs={3}>
-              <InputLabel>From Year</InputLabel>
-            </Grid>
-            <Grid item xs={3}>
-              <Select fullWidth label='From Year' value={this.state.fromYear} onChange={this.handleFromYearChange}>
+              <Select
+                fullWidth label='SE Practice'
+                value={this.state.sePractice} onChange={this.handleSePracticeChange}
+              >
                 <MenuItem value={''}>&nbsp;</MenuItem>
-                {[...Array(10).keys()].map(i => { return <MenuItem key={i} value={2020-i}>{2020-i}</MenuItem> })}
+                {Object.keys(sePracticeOptions).map(i => { return <MenuItem key={i} value={i}>{i}</MenuItem> })}
               </Select>
             </Grid>
             <Grid item xs={3}>
-              <InputLabel>To Year</InputLabel>
+              <InputLabel>Claimed Benefits</InputLabel>
             </Grid>
             <Grid item xs={3}>
-              <Select fullWidth label='To Year' value={this.state.toYear} onChange={this.handleToYearChange}>
-                <MenuItem value={''}>&nbsp;</MenuItem>
-                {[...Array(10).keys()].map(i => { return <MenuItem key={i} value={2020-i}>{2020-i}</MenuItem> })}
+              <Select
+                fullWidth label='Claimed Benefits' multiple={true}
+                value={this.state.claimedBenefits} onChange={this.handleClaimedBenefitsChange}
+              >
+                <MenuItem value={''}>All</MenuItem>
+                {sePracticeOptions[this.state.sePractice].map(i => { return <MenuItem key={i} value={i}>{i}</MenuItem> })}
               </Select>
             </Grid>
-            <SearchCriteria />
+            <Grid item xs={2}>
+              <InputLabel>This year</InputLabel>
+              <Radio
+                checked={this.state.yearOption === '1'}
+                onChange={this.handleYearOptionChange}
+                value={1}
+                name="yearOption"
+                inputProps={{ 'aria-label': 'This year' }}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <InputLabel>Last 3 years</InputLabel>
+              <Radio
+                checked={this.state.yearOption === '3'}
+                onChange={this.handleYearOptionChange}
+                value={3}
+                name="yearOption"
+                inputProps={{ 'aria-label': 'Last 3 years' }}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <InputLabel>Last 5 years</InputLabel>
+              <Radio
+                checked={this.state.yearOption === '5'}
+                onChange={this.handleYearOptionChange}
+                value={5}
+                name="yearOption"
+                inputProps={{ 'aria-label': 'Last 5 years' }}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <InputLabel>Custom</InputLabel>
+              <Radio
+                checked={this.state.yearOption === '0'}
+                onChange={this.handleYearOptionChange}
+                value={0}
+                name="yearOption"
+                inputProps={{ 'aria-label': 'Custom' }}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <InputLabel>Year {this.state.yearRange.join(' - ')}</InputLabel>
+            </Grid>
+            <Grid item xs={2}>
+              <Slider
+                value={this.state.yearRange}
+                onChange={this.handleYearRangeChange}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                max={currentYear} min={2000}
+                disabled={this.state.yearOption !== '0'}
+              />
+            </Grid>
             <Grid item xs={2}>
               <Button variant="contained" color="primary" type="submit">Search</Button>
             </Grid>

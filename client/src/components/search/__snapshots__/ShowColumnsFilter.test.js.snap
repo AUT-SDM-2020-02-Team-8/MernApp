@@ -27,6 +27,26 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
+                "title",
+                "author",
+                "year",
+                "recordType",
+                "journal",
+                "publisher",
+                "sePractice",
+                "claims",
+              ]
+            }
+            handleChange={[Function]}
+            key="levelOfSupport"
+            label="Level of Support"
+            name="levelOfSupport"
+          />
+          <ShowColumnCheckbox
+            chosenColumns={
+              Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -45,6 +65,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -63,6 +84,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -81,6 +103,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -99,6 +122,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -117,6 +141,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -135,6 +160,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",
@@ -153,6 +179,7 @@ exports[`renders homepage 1`] = `
           <ShowColumnCheckbox
             chosenColumns={
               Array [
+                "levelOfSupport",
                 "title",
                 "author",
                 "year",

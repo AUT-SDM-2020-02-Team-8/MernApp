@@ -23,7 +23,8 @@ router.get("/import", async (req, res) => {
       recordType: article['type'],
       metadata: article,
       sePractice: 'TDD',
-      claims: claimsSample.slice(0, Math.random()*3)
+      claims: claimsSample.slice(0, Math.random()*3),
+      levelOfSupport: Math.floor(Math.random() * 6)
     }
     let evidence = new Evidence(attrs)
     await evidence.save()
@@ -39,23 +40,15 @@ router.get("/import", async (req, res) => {
 router.post("/search", (req, res) => {
   let conditions = []
 
-  if (typeof(req.body.fromYear) == 'number') {
-    conditions.push({ year: { $gte: req.body.fromYear } })
+  if (typeof(req.body.yearRange) === 'object') {
+    conditions.push({ year: { $gte: req.body.yearRange[0] } })
+    conditions.push({ year: { $lte: req.body.yearRange[1] } })
   }
-  if (typeof(req.body.toYear) == 'number') {
-    conditions.push({ year: { $lte: req.body.toYear } })
-  }
-  if (req.body.query.length > 0) {
-    const escapedString = escapeStringRegexp(req.body.query)
-    const regexCondition = { $regex: new RegExp(escapedString, 'i') }
-    
-    conditions.push({ $or: [
-      { title: regexCondition },
-      { author: regexCondition },
-      { journal: regexCondition },
-      { publisher: regexCondition },
-      { recordType: regexCondition }
-    ]})
+  if (req.body.sePractice.length > 0) {
+    conditions.push({ sePractice: req.body.sePractice })
+    if (req.body.claims.length > 0) {
+      conditions.push({ claims: { $in: req.body.claims } })
+    }
   }
 
   let searchConditions = {}

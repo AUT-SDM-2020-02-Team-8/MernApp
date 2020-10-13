@@ -16,6 +16,7 @@ const EvidenceSchema = new Schema({
   recordType: String,
   sePractice: String,
   claims: [String],
+  levelOfSupport: Number,
   metadata: {
     type: String,
     get: function(data) {
