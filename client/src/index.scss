@@ -30,3 +30,17 @@ code {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
+.submitPage {
+  label:first-letter {
+    text-transform:capitalize;
+  }
+}
+
+.successMsg {
+  color: green;
+}
+
+.errorMsg {
+  color: red;
+}

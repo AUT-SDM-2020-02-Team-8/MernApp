@@ -62,14 +62,8 @@ class SearchContainer extends Component {
   sortBy(column) {
     let newEvidences = [...this.state.evidences]
     newEvidences.sort((a, b) => {
-      let compareValue = 0
-      if (a[column] > b[column]) {
-        compareValue = this.state.direction
-      }
-      else if (a[column] < b[column]) {
-        compareValue = -1 * this.state.direction
-      }
-      return compareValue;
+      const compareValue = a[column] > b[column] ? 1 : (a[column] < b[column] ? -1 : 0)
+      return compareValue * this.state.direction
     })
     this.setState({
       evidences: newEvidences,
@@ -78,9 +72,35 @@ class SearchContainer extends Component {
     })
   }
 
+  renderYearRadio() {
+    const opts = {
+      'This year': 1,
+      'Last 3 years': 3,
+      'Last 5 years': 5,
+      'Custom': 0
+    }
+
+    return Object.entries(opts).map(([k, v]) => {
+      return (
+        <Grid item xs={2} key={k}>
+          <InputLabel>{k}</InputLabel>
+          <Radio
+            checked={this.state.yearOption === v.toString()}
+            onChange={this.handleYearOptionChange}
+            value={v}
+            name="yearOption"
+            inputProps={{ 'aria-label': k }}
+          />
+        </Grid>
+      )
+    })
+  }
+
   render() {
     return (
       <Container>
+        <Link to='/create'>Submit new article</Link>
+        <h1>Search</h1>
         <form onSubmit={this.performSearch}>
           <Grid container spacing={3}>
             <Grid item xs={3}>
@@ -91,8 +111,9 @@ class SearchContainer extends Component {
                 fullWidth label='SE Practice'
                 value={this.state.sePractice} onChange={this.handleSePracticeChange}
               >
-                <MenuItem value={''}>&nbsp;</MenuItem>
-                {Object.keys(sePracticeOptions).map(i => { return <MenuItem key={i} value={i}>{i}</MenuItem> })}
+                {Object.keys(sePracticeOptions).map(i => {
+                  return <MenuItem key={i} value={i}>{i}&nbsp;</MenuItem>
+                })}
               </Select>
             </Grid>
             <Grid item xs={3}>
@@ -107,46 +128,7 @@ class SearchContainer extends Component {
                 {sePracticeOptions[this.state.sePractice].map(i => { return <MenuItem key={i} value={i}>{i}</MenuItem> })}
               </Select>
             </Grid>
-            <Grid item xs={2}>
-              <InputLabel>This year</InputLabel>
-              <Radio
-                checked={this.state.yearOption === '1'}
-                onChange={this.handleYearOptionChange}
-                value={1}
-                name="yearOption"
-                inputProps={{ 'aria-label': 'This year' }}
-              />
-            </Grid>
-            <Grid item xs={2}>
-              <InputLabel>Last 3 years</InputLabel>
-              <Radio
-                checked={this.state.yearOption === '3'}
-                onChange={this.handleYearOptionChange}
-                value={3}
-                name="yearOption"
-                inputProps={{ 'aria-label': 'Last 3 years' }}
-              />
-            </Grid>
-            <Grid item xs={2}>
-              <InputLabel>Last 5 years</InputLabel>
-              <Radio
-                checked={this.state.yearOption === '5'}
-                onChange={this.handleYearOptionChange}
-                value={5}
-                name="yearOption"
-                inputProps={{ 'aria-label': 'Last 5 years' }}
-              />
-            </Grid>
-            <Grid item xs={2}>
-              <InputLabel>Custom</InputLabel>
-              <Radio
-                checked={this.state.yearOption === '0'}
-                onChange={this.handleYearOptionChange}
-                value={0}
-                name="yearOption"
-                inputProps={{ 'aria-label': 'Custom' }}
-              />
-            </Grid>
+            {this.renderYearRadio()}
             <Grid item xs={2}>
               <InputLabel>Year {this.state.yearRange.join(' - ')}</InputLabel>
             </Grid>
@@ -162,9 +144,6 @@ class SearchContainer extends Component {
             </Grid>
             <Grid item xs={2}>
               <Button variant="contained" color="primary" type="submit">Search</Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Link to='/create'>Submit new article</Link>
             </Grid>
           </Grid>
         </form>

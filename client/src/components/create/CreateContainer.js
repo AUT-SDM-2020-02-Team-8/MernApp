@@ -1,220 +1,188 @@
 import React, { Component } from "react"
 import axios from "axios"
-import { Container, InputLabel, Button, Box, TextField, Grid } from "@material-ui/core"
+import { Container, InputLabel, Button, Grid, TextField, Select, MenuItem } from "@material-ui/core"
 import { Link } from "react-router-dom"
+import bibtexParse from 'bibtex-parse'
+import _ from 'lodash'
+import { sePracticeOptions } from './../constants'
 
-const defaultState = {
-  author: '',
-  title: '',
-  message: '',
-  journal: '',
-  year: '',
-  volume: '',
-  number: '',
-  pages: '',
-  doi: '',
-  _type: '',
-  _key: '',
-}
+let reader
+
+const articleAttrs = [
+  'title', 'author', 'journal', 'volume', 'year',
+  'number', 'pages', 'doi', 'publisher'
+]
+
+const defaultState = articleAttrs.reduce((ac, a) => ({...ac,[a]:''}), {})
 
 class CreateContainer extends Component {
   constructor() {
     super()
     this.state = {
-      defaultState
+      ...defaultState,
+      sePractice: '',
+      email: '',
+      success: true,
+      message: ''
     }
     this.performSubmit = this.performSubmit.bind(this)
-    this.handleAuthorChange = this.handleAuthorChange.bind(this)
-    this.handleTitleChange = this.handleTitleChange.bind(this)
-    this.handleJournalChange = this.handleJournalChange.bind(this)
-    this.handleYearChange = this.handleYearChange.bind(this)
-    this.handleVolumeChange = this.handleVolumeChange.bind(this)
-    this.handleNumberChange = this.handleNumberChange.bind(this)
-    this.handlePagesChange = this.handlePagesChange.bind(this)
-    this.handleDoiChange = this.handleDoiChange.bind(this)
-    this.handleFileChange = this.handleFileChange.bind(this)
-    this.fileInput = React.createRef();
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.parseFileData = this.parseFileData.bind(this)
   }
 
   async performSubmit(event) {
     event.preventDefault()
-    this.setState({message: ""})
-
-    const data = {
-      author: this.state.author,
-      title: this.state.title,
-      journal: this.state.journal,
-      year: this.state.year,
-      volume: this.state.volume,
-      number: this.state.number,
-      pages: this.state.pages,
-      doi: this.state.doi,
-      _type: this.state._type,
-      _key: this.state._key,
-    }
+    this.setState({ message: '' })
+    let attrsList = articleAttrs
+    attrsList.push('email')
+    attrsList.push('sePractice')
+    const data = _.pick(this.state, attrsList)
 
     try {
       const res = await axios.post('/api/evidences/create', data)
-      this.setState({
-        ...defaultState,
-        message: res.data.error || !res.data.success ? res.data.error : "Submitted successfully.",
-      })
-
+      this.setState({ ...defaultState, message: res.data.message, success: true })
     } catch (error) {
-      try {
-        const msg = error.response.data.error 
-        if (msg) {
-          this.setState({
-            message: msg
-          })
-        } else {
-            this.setState({
-              message: "Please check your connection"
-            })
-          }
-        } catch {
-          this.setState({
-            message: "Please check your connection"
-          })
-      }
+      this.setState({ message: error.response.data.message, success: false })
     }
   }
 
-  handleAuthorChange(event) {
-    this.setState({ author: event.target.value })
-  }
-
-  handleTitleChange(event) {
-    this.setState({ title: event.target.value })
-  }
-
-  handleJournalChange(event) {
-    this.setState({ journal: event.target.value })
-  }
-
-  handleYearChange(event) {
-    this.setState({ year: event.target.value })
-  }
-
-  handleVolumeChange(event) {
-    this.setState({ volume: event.target.value })
-  }
-
-  handleNumberChange(event) {
-    this.setState({ number: event.target.value })
-  }
-
-  handlePagesChange(event) {
-    this.setState({ pages: event.target.value })
-  }
-
-  handleDoiChange(event) {
-    this.setState({ doi: event.target.value })
-  }
-
-  async handleFileChange(event) {
-    
-    const file = this.fileInput.current.files[ 0 ]
-    if (!file) return
-    
-    var reader = new FileReader();
-
-    reader.onload = async event => {
-      const text = event.target.result
-      try {
-        const res = await axios.post( '/api/evidences/parse', {bibtex: text})
-        if ( !res.data || res.data.error || res.status !== 200 ) {
-          return alert( res.data.error || "Error with file parsing" )
-        }
-
-        const author = res.data.author || res.data.AUTHOR
-        const title = res.data.title || res.data.TITLE
-        const journal = res.data.journal || res.data.JOURNAL
-        const year = res.data.year || res.data.YEAR
-        
-        const volume = res.data.volume || res.data.VOLUME
-        const number = res.data.number || res.data.NUMBER
-        const pages = res.data.pages || res.data.PAGES
-        const doi = res.data.doi || res.data.DOI
-        
-        const key = res.data.key || res.data.KEY
-        const type = res.data.type || res.data.TYPE
-
-        this.setState({
-          author, title, journal, year, volume, number, pages, doi, _key: key, _type: type
-        })
-      } catch (error) {
-        try {
-          const msg = error.response.data.error
-          if (msg) {
-            return alert(msg)
-          } else {
-            return alert( "Error, please check you connection" )
-          }
-        } catch {
-          return alert( "Error, please check you connection" )
-        }
+  handleInputChange(event) {
+    if (event.target.pattern) {
+      const regex = new RegExp(event.target.pattern)
+      if (event.target.value === '' || regex.test(event.target.value)) {
+        this.setState({ [event.target.name]: event.target.value })
       }
     }
-    reader.onerror = error => {
-      return alert( "Error with file parsing" )
-    } 
+    else {
+      this.setState({ [event.target.name]: event.target.value })
+    }
+  }
+
+  parseFileData() {
+    const content = reader.result
+    const bibtexData = bibtexParse.entries(content)
+    const newState = _.mapValues(defaultState, (v, k) => {
+      return bibtexData[0][_.toUpper(k)] || ''
+    })
+    this.setState(newState)
+  }
+
+  handleFileChange(file) {
+    reader = new FileReader()
+    reader.onloadend = this.parseFileData
     reader.readAsText(file)
+  }
+
+  handlerNumberInput(event) {
+    if (event.keyCode > 31 && event.keyCode !== 127) {
+      if (event.keyCode < 48 || event.keyCode > 57) {
+        event.preventDefault()
+      }
+    }
   }
 
   render() {
     return (
-      <Container maxWidth='sm'>
+      <Container className='submitPage' maxWidth='sm'>
         <Link to='/'>Back to search</Link>
-        <Box textAlign="center" pb="40px">
-          <h1>New Article</h1>
-        </Box>
+        <h1>New Article</h1>
         <form onSubmit={this.performSubmit}>
-          <Box mb="20px">
-            <InputLabel>Bibtex File</InputLabel>
-            <input onChange={this.handleFileChange} type='file' id='uploadFile' ref={ this.fileInput } accept="text/plain" />
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Author</InputLabel>
-            <TextField fullWidth value={ this.state.author } onChange={ this.handleAuthorChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Title</InputLabel>
-            <TextField fullWidth required value={ this.state.title } onChange={ this.handleTitleChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Journal</InputLabel>
-            <TextField  fullWidth value={ this.state.journal } onChange={ this.handleJournalChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Volume</InputLabel>
-            <TextField type="number" value={ this.state.volume } onChange={ this.handleVolumeChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Year</InputLabel>
-            <TextField type="number" value={ this.state.year } onChange={ this.handleYearChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Number</InputLabel>
-            <TextField type="number" value={ this.state.number } onChange={ this.handleNumberChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>Pages</InputLabel>
-            <TextField type="text" value={ this.state.pages } onChange={ this.handlePagesChange }></TextField>
-          </Box>
-          <Box mb="20px">
-            <InputLabel>DOI</InputLabel>
-            <TextField fullWidth value={ this.state.doi } onChange={ this.handleDoiChange }></TextField>
-          </Box>
-          {this.state.message && 
-            <Box mb="20px" p='10px' style={{background: "#dedede"}}>
-              { this.state.message }
-            </Box>
-          }
-          <Grid item xs={ 3 } >
-            <div style={{marginBottom: "50px"}}>
-              <td><Button variant="contained" color="primary" type="submit">Submit</Button></td>
-            </div>
+          <Grid className={this.state.success ? 'successMsg' : 'errorMsg'} item xs={12}>{this.state.message}</Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <InputLabel>Bibtex File</InputLabel>
+              <input onChange={(e) => this.handleFileChange(e.target.files[0])} type='file' accept="text/plain" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth required
+                name='title' label='Title'
+                value={this.state.title}
+                onChange={this.handleInputChange} />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth required
+                name='author' label='Author'
+                value={this.state.author}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth name='journal' label='Journal'
+                value={this.state.journal}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth type='number' name='volume' label='Volume'
+                inputProps={{ min: 1, step: 1, onKeyDown: this.handlerNumberInput }}
+                value={this.state.volume}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth type='number' name='year' label='Year'
+                inputProps={{ min: 1900, step: 1, onKeyDown: this.handlerNumberInput}}
+                value={this.state.year}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth type='number' name='number' label='Number'
+                inputProps={{ min: 1, step: 1, onKeyDown: this.handlerNumberInput}}
+                value={this.state.number}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth name='pages' label='Pages'
+                value={this.state.pages}
+                inputProps={{ pattern: "^[0-9]+$|^[0-9]+([-]{1,2}|,)[0-9]*$"}}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth name='doi' label='DOI'
+                value={this.state.doi}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth name='publisher' label='Publisher'
+                value={this.state.publisher}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <InputLabel id='se-practice-select-label'>SE Practice</InputLabel>
+              <Select
+                fullWidth label='SE Practice'
+                labelId='se-practice-select-label'
+                name='sePractice'
+                value={this.state.sePractice} onChange={this.handleInputChange}
+              >
+                {Object.keys(sePracticeOptions).map(i => {
+                  return <MenuItem key={i} value={i}>{i}&nbsp;</MenuItem>
+                })}
+              </Select>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth required name='email' label='Email'
+                value={this.state.email}
+                onChange={this.handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <Button variant="contained" color="primary" type="submit">Submit</Button>
+            </Grid>
           </Grid>
         </form>
       </Container>
